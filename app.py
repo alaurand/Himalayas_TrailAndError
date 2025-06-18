@@ -347,3 +347,9 @@ model2_cat = encoder2.transform(data_to_model_2.select_dtypes(exclude="number"))
 data_to_model_2_scaled = pd.concat([model2_num,model2_cat], axis=1)                                                   
 
 success_prob = model2.predict_proba(data_to_model_2_scaled)[:,1]
+
+success_prob1 = success_prob[0]
+success_prob2 = success_prob[1]
+success_prob3 = success_prob[2]
+
+st.write(f'{success_prob1}, {success_prob2}, {success_prob3}')
