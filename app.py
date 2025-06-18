@@ -334,3 +334,16 @@ peakid_var = filter_output.reset_index()
 data_to_model_2["peakid"] = peakid_var["peakid"]
 
 #st.write(country_max_height)
+
+#instantiating model2
+
+scaler2 = load('scaler2.joblib')
+encoder2 = load('encoder2.joblib')
+model2 = load('model2.joblib')
+
+model2_num = scaler2.transform(data_to_model_2.select_dtypes(include="number"))
+model2_cat = encoder2.transform(data_to_model_2.select_dtypes(exclude="number"))
+
+data_to_model_2_scaled = pd.concat([model2_num,model2_cat], axis=1)                                                   
+
+success_prob = model2.predict_proba(data_to_model_2_scaled)[:,1]
